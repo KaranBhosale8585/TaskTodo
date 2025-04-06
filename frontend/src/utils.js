@@ -1,2 +1,2 @@
-const API_URL = "https://mern-to-do-alpha.vercel.app";
+const API_URL = "https://task-todo-puce.vercel.app";
 export default API_URL;
