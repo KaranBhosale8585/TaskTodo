@@ -58,7 +58,7 @@ const App = () => {
 
   const handleCheck = async (id) => {
     fetchTasks();
-    const data = await togalTask(id, completed);
+    const data = await togalTask(id, !completed);
     fetchTasks();
     try {
       setItems(
