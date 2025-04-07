@@ -57,20 +57,21 @@ const App = () => {
   };
 
   const handleCheck = async (id) => {
-    fetchTasks();
-    const data = await togalTask(id, !completed);
-    fetchTasks();
     try {
+      const task = items.find((item) => item._id === id);
+      if (!task) return;
+
+      const updatedTask = { ...task, completed: !task.completed };
+      const data = await togalTask(id, updatedTask.completed);
       setItems(
-        items.map(async (item) => {
-          item._id === id ? { ...item, completed: !item.completed } : item;
-          setCompleted(!item.completed);
-          return item;
-        })
+        items.map((item) =>
+          item._id === id ? { ...item, completed: updatedTask.completed } : item
+        )
       );
+
       toast.success(data.message);
     } catch (error) {
-      toast.error(data.message);
+      toast.error("Failed to update task status");
     }
   };
 
