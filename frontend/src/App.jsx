@@ -43,16 +43,10 @@ const App = () => {
   const handleDelete = async (id) => {
     try {
       const data = await deleteTask(id);
-
-      setItems(
-        items.filter((item) => {
-          item.id !== id;
-        })
-      );
-      fetchTasks();
+      setItems(items.filter((item) => item._id !== id));
       toast.success(data.message);
-    } catch (error) {
-      toast.error(data.message);
+    } catch (err) {
+      toast.err(data.message);
     }
   };
 
